@@ -1,6 +1,19 @@
 var assert = require('assert');
 var products = require('../sales');
 
+var week1 = products.linesInFiles('./input/week1.csv');
+var week2 = products.linesInFiles('./input/week2.csv');
+var week3 = products.linesInFiles('./input/week3.csv');
+var week4 = products.linesInFiles('./input/week4.csv');
+var sortedProductsListWeek1 = products.sortedProducts(week1);
+var sortedProductsListWeek2 = products.sortedProducts(week2);
+var sortedProductsListWeek3 = products.sortedProducts(week3);
+var sortedProductsListWeek4 = products.sortedProducts(week4);
+var groupedSoldProductsWeek1 = products.groupedData(sortedProductsListWeek1);
+var groupedSoldProductsWeek2 = products.groupedData(sortedProductsListWeek2);
+var groupedSoldProductsWeek3 = products.groupedData(sortedProductsListWeek3);
+var groupedSoldProductsWeek4 = products.groupedData(sortedProductsListWeek4);
+
 describe('list the products', function() {
 
     it('return the product length week1', function() {
@@ -38,11 +51,49 @@ describe('list the products', function() {
 })
 
 
+describe('list the sorted products', function() {
+
+    it('return the sorted products length week1', function() {
+
+        var sortedProductsListWeek1 = products.sortedProducts(week1).length;
+
+        assert.equal(sortedProductsListWeek1, 105);
+
+    });
+
+    it('return the sorted product length week2', function() {
+
+        var sortedProductsListWeek2 = products.sortedProducts(week2).length;
+
+        assert.equal(sortedProductsListWeek2, 117);
+
+    });
+
+    it('return the sorted product length week3', function() {
+
+
+        var sortedProductsListWeek3 = products.sortedProducts(week3).length;
+
+        assert.equal(sortedProductsListWeek3, 104);
+
+    });
+
+    it('return the  sorted product length week4', function() {
+
+
+        var sortedProductsListWeek4 = products.sortedProducts(week4).length;
+
+        assert.equal(sortedProductsListWeek4, 119);
+
+    });
+
+})
+
 describe('list the products grouped', function() {
 
     it('return grouped products for week1', function() {
-        var productsList = products.linesInFiles('./input/week1.csv');
-        var groupedSoldProducts = products.groupedData(productsList);
+
+        var groupedSoldProductsWeek1 = products.groupedData(sortedProductsListWeek1);
         var expectedGroupedProducts = {
             'Milk 1l': 39,
             'Imasi': 30,
@@ -61,13 +112,13 @@ describe('list the products grouped', function() {
             'Mixed Sweets 5s': 49
         };
 
-        assert.deepEqual(groupedSoldProducts, expectedGroupedProducts);
+        assert.deepEqual(groupedSoldProductsWeek1, expectedGroupedProducts);
 
     })
 
     it('return grouped products for week2', function() {
-        var productsList = products.linesInFiles('./input/week2.csv');
-        var groupedSoldProducts = products.groupedData(productsList);
+
+        var groupedSoldProductsWeek2 = products.groupedData(sortedProductsListWeek2);
         var expectedGroupedProducts = {
             'Imasi': 36,
             'Bread': 28,
@@ -89,14 +140,13 @@ describe('list the products grouped', function() {
             'Valentine Cards': 14
         };
 
-
-        assert.deepEqual(groupedSoldProducts, expectedGroupedProducts);
+        assert.deepEqual(groupedSoldProductsWeek2, expectedGroupedProducts);
 
     })
 
     it('return grouped products for week3', function() {
-        var productsList = products.linesInFiles('./input/week3.csv');
-        var groupedSoldProducts = products.groupedData(productsList);
+
+        var groupedSoldProductsWeek3 = products.groupedData(sortedProductsListWeek3);
         var expectedGroupedProducts = {
             'Imasi': 25,
             'Bread': 24,
@@ -115,15 +165,13 @@ describe('list the products grouped', function() {
             'Milk 1l': 28
         };
 
-
-
-        assert.deepEqual(groupedSoldProducts, expectedGroupedProducts);
+        assert.deepEqual(groupedSoldProductsWeek3, expectedGroupedProducts);
 
     })
 
     it('return grouped products for week4', function() {
-        var productsList = products.linesInFiles('./input/week4.csv');
-        var groupedSoldProducts = products.groupedData(productsList);
+
+        var groupedSoldProductsWeek4 = products.groupedData(sortedProductsListWeek4);
         var expectedGroupedProducts = {
             'Imasi': 34,
             'Bread': 33,
@@ -144,7 +192,7 @@ describe('list the products grouped', function() {
         };
 
 
-        assert.deepEqual(groupedSoldProducts, expectedGroupedProducts);
+        assert.deepEqual(groupedSoldProductsWeek4, expectedGroupedProducts);
 
     })
 
@@ -153,9 +201,8 @@ describe('list the products grouped', function() {
 describe('list the most popular product', function() {
 
     it('return most popular product for week1', function() {
-        var productsList = products.linesInFiles('./input/week1.csv');
-        var groupedSoldProducts = products.groupedData(productsList);
-        var mostPopularProduct = products.mostPopularItem(groupedSoldProducts);
+
+        var mostPopularProduct = products.mostPopularItem(groupedSoldProductsWeek1);
         var expectedPopularProduct = {
             item: 'Coke 500ml',
             amount: 54
@@ -165,11 +212,9 @@ describe('list the most popular product', function() {
 
     })
 
-
     it('return most popular product for week2', function() {
-        var productsList = products.linesInFiles('./input/week2.csv');
-        var groupedSoldProducts = products.groupedData(productsList);
-        var mostPopularProduct = products.mostPopularItem(groupedSoldProducts);
+
+        var mostPopularProduct = products.mostPopularItem(groupedSoldProductsWeek2);
         var expectedPopularProduct = {
             item: 'Mixed Sweets 5s',
             amount: 54
@@ -180,9 +225,9 @@ describe('list the most popular product', function() {
     })
 
     it('return most popular product for week3', function() {
-        var productsList = products.linesInFiles('./input/week3.csv');
-        var groupedSoldProducts = products.groupedData(productsList);
-        var mostPopularProduct = products.mostPopularItem(groupedSoldProducts);
+
+
+        var mostPopularProduct = products.mostPopularItem(groupedSoldProductsWeek3);
         var expectedPopularProduct = {
             item: 'Mixed Sweets 5s',
             amount: 29
@@ -193,9 +238,8 @@ describe('list the most popular product', function() {
     })
 
     it('return most popular product for week4', function() {
-        var productsList = products.linesInFiles('./input/week4.csv');
-        var groupedSoldProducts = products.groupedData(productsList);
-        var mostPopularProduct = products.mostPopularItem(groupedSoldProducts);
+
+        var mostPopularProduct = products.mostPopularItem(groupedSoldProductsWeek4);
         var expectedPopularProduct = {
             item: 'Coke 500ml',
             amount: 45
@@ -207,11 +251,14 @@ describe('list the most popular product', function() {
 
 })
 
+
 describe('list the least popular product', function() {
+
+
     it('return least popular product for week1', function() {
-        var productsList = products.linesInFiles('./input/week1.csv');
-        var groupedSoldProducts = products.groupedData(productsList);
-        var leastPopularProduct = products.leastPopularItem(groupedSoldProducts);
+
+
+        var leastPopularProduct = products.leastPopularItem(groupedSoldProductsWeek1);
         var expectedLeastPopularProduct = {
             amount: 3,
             item: 'Shampoo 1 litre'
@@ -222,9 +269,8 @@ describe('list the least popular product', function() {
     })
 
     it('return least popular product for week2', function() {
-        var productsList = products.linesInFiles('./input/week2.csv');
-        var groupedSoldProducts = products.groupedData(productsList);
-        var leastPopularProduct = products.leastPopularItem(groupedSoldProducts);
+
+        var leastPopularProduct = products.leastPopularItem(groupedSoldProductsWeek2);
         var expectedLeastPopularProduct = {
             amount: 5,
             item: 'Soap Bar'
@@ -235,22 +281,19 @@ describe('list the least popular product', function() {
     })
 
     it('return least popular product for week3', function() {
-        var productsList = products.linesInFiles('./input/week3.csv');
-        var groupedSoldProducts = products.groupedData(productsList);
-        var leastPopularProduct = products.leastPopularItem(groupedSoldProducts);
+
+        var leastPopularProduct = products.leastPopularItem(groupedSoldProductsWeek3);
         var expectedLeastPopularProduct = {
             amount: 4,
             item: 'Iwisa Pap 5kg'
         };
 
         assert.deepEqual(leastPopularProduct, expectedLeastPopularProduct);
-
     })
 
     it('return least popular product for week4', function() {
-        var productsList = products.linesInFiles('./input/week4.csv');
-        var groupedSoldProducts = products.groupedData(productsList);
-        var leastPopularProduct = products.leastPopularItem(groupedSoldProducts);
+
+        var leastPopularProduct = products.leastPopularItem(groupedSoldProductsWeek4);
         var expectedLeastPopularProduct = {
             amount: 13,
             item: 'Shampoo 1 litre'

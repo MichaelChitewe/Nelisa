@@ -14,20 +14,28 @@ exports.linesInFiles = function(filePath) {
             .splice(1)
             .splice(-3);
     }
-
+    //console.log(newSalesInfo);
     return newSalesInfo;
 }
 
-exports.groupedData = function(newSalesInfo) {
+exports.sortedProducts = function(newSalesInfo) {
 
     var salesList = newSalesInfo.map(function(items) {
 
-        return {
+            return {
 
-            product: items[0],
-            quantity: parseInt(items[1])
-        }
-    })
+                product: items[0],
+                quantity: parseInt(items[1])
+            }
+        })
+        // console.log(salesList.length);
+         return salesList;
+}
+
+
+
+
+exports.groupedData = function(salesList) {
 
     var groupedProducts = {};
 
@@ -38,7 +46,7 @@ exports.groupedData = function(newSalesInfo) {
         }
         groupedProducts[products.product] += products.quantity;
     });
-
+    console.log(groupedProducts);
     return groupedProducts;
 }
 
@@ -48,21 +56,20 @@ exports.mostPopularItem = function(groupedProducts) {
     var mostPopular = {};
 
     for (var prop in groupedProducts) {
-        
         if (groupedProducts[prop] > max) {
             max = groupedProducts[prop];
 
             mostPopular = {
 
                 item: prop,
-                amount: max
+                amount: Number(max)
 
             }
 
         }
 
     }
-    console.log(mostPopular);
+    //  console.log(mostPopular);
     return mostPopular;
 }
 
@@ -88,6 +95,6 @@ exports.leastPopularItem = function(groupedProducts) {
 
     }
 
-            console.log(leastPopular);
-            return leastPopular;
+    /// console.log(leastPopular);
+    return leastPopular;
 }
