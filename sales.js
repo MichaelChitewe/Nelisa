@@ -33,8 +33,6 @@ exports.sortedProducts = function(newSalesInfo) {
 }
 
 
-
-
 exports.groupedData = function(salesList) {
 
     var groupedProducts = {};
@@ -46,7 +44,7 @@ exports.groupedData = function(salesList) {
         }
         groupedProducts[products.product] += products.quantity;
     });
-    console.log(groupedProducts);
+    //console.log(groupedProducts);
     return groupedProducts;
 }
 

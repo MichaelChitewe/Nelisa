@@ -1,40 +1,40 @@
 var fs = require('fs');
 
-exports.linesInFiles = function(filePath) {
+exports.categoriesMapped = function(filePath) {
     var categoryInfo = fs.readFileSync(filePath, 'utf-8');
     var newCategoryInfo = categoryInfo
         .split('\n')
         .filter(Boolean)
         .splice([1]);
 
+    var categoryMap = {};
+
     for (var i = 0; i < newCategoryInfo.length; i++) {
         newCategoryInfo[i] = newCategoryInfo[i]
             .split(',');
+        //  console.log(newCategoryInfo[i]);
+
+        categoryMap[newCategoryInfo[i][0]] = newCategoryInfo[i][1];
+
     }
 
-    console.log(newCategoryInfo);
-    return newCategoryInfo;
+    //console.log(categoryMap);
+    return categoryMap;
 }
 
-// exports.categoriesList = function(newCategoryInfo) {
-//
-//     var categoriesList = newCategoryInfo.map(function(prop) {
-//
-//         return {
-//
-//
-//
-//
-//
-//         }
-//
-//     })
-//
-//
-//
-//     console.log(categoriesList);
-//     return categoriesList;
-// }
+exports.categoriesSummed = function(product, category) {
+    //
+  for(var prop in product){
+    for(var key in category){
+  }
+
+}
+
+}
+
+
+
+
 
 
 // exports.mappedCategories = function(categoriesList) {
