@@ -22,82 +22,78 @@ exports.categoriesMapped = function(filePath) {
     return categoryMap;
 }
 
-exports.categoriesSummed = function(product, category) {
-    //
-  for(var prop in product){
-    for(var key in category){
-  }
+exports.categoriesSummed = function(productsData, categoryData) {
 
+
+    var categoriesTotalled = {};
+
+
+    for (var key in categoryData) {
+        //console.log(key);
+        for (var prop in productsData) {
+          //console.log(prop);
+            if (key === prop) {
+
+                if (!categoriesTotalled.hasOwnProperty(categoryData[key])) {
+
+                    categoriesTotalled[categoryData[key]] = productsData[prop];
+
+                } else {
+
+                    categoriesTotalled[categoryData[key]] += productsData[prop];
+
+                }
+
+            }
+
+
+        }
+
+    }
+return  categoriesTotalled;
 }
 
+exports.mostPopularCategory = function(categoriesTotalled) {
+
+
+    var max = 0;
+    var mostPopularCata = {};
+
+    for (var prop in categoriesTotalled) {
+        if (categoriesTotalled[prop] > max) {
+            max = categoriesTotalled[prop];
+
+            mostPopularCata = {
+
+                amount: parseInt(max),
+                item: prop
+
+            }
+        }
+    }
+  //  console.log(mostPopularCata);
+    return mostPopularCata;
 }
 
+exports.leastPopularCategory = function(categoriesTotalled) {
 
+        var min = 300;
+        var leastPopularCata = {};
 
+        for (var prop in categoriesTotalled) {
+            if (categoriesTotalled[prop] < min) {
+                min = categoriesTotalled[prop];
 
+                leastPopularCata = {
 
+                    amount: parseInt(min),
+                    item: prop
 
-// exports.mappedCategories = function(categoriesList) {
-//
-//
-//     var categoriesMapped = {};
-//
-//     categoriesList.forEach(function(categories) {
-//
-//         if (!categoriesMapped.hasOwnProperty(categories.category)) {
-//             categoriesMapped[categories.category] = 0;
-//         }
-//         categoriesMapped[categories.category] += categories.product;
-//     });
-//     console.log(categoriesMapped);
-//     return categoriesMapped;
-//
-// }
-//
+                }
 
-// exports.mostPopularCategory = function(category) {
-//
-//
-//     var max = 0;
-//     var mostPopularCata = {};
-//
-//     for (var prop in category) {
-//         if (category[prop] > max) {
-//             max = category[prop];
-//
-//             mostPopularCata = {
-//
-//                 amount: parseInt(max),
-//                 item: prop
-//
-//             }
-//         }
-//     }
-//     console.log(mostPopularCata);
-//     return mostPopularCata;
-// }
-//
-//
-//
-// exports.leastPopularCategory = function(category) {
-//
-//
-//         var min = 0;
-//         var leastPopularCata = {};
-//
-//         for (var prop in category) {
-//             if (category[prop] < min) {
-//                 min = category[prop];
-//
-//                 leastPopularCata = {
-//
-//                     amount: parseInt(min),
-//                     item: prop
-//
-//                 }
-//
-//             }
-//         }
-//
-//         console.log(leastPopularCata);
-//         return leastPopularCata;
+            }
+        }
+
+        //console.log(leastPopularCata);
+        return leastPopularCata;
+}
