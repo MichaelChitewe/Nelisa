@@ -1,29 +1,62 @@
 var fs = require('fs');
 
-exports.purchasesSorted = function(filePath) {
+exports.purchasesData = function(filePath) {
     var purchasesInfo = fs.readFileSync(filePath, 'utf-8');
     var newPurchasesInfo = purchasesInfo
         .split('\n')
         .filter(Boolean)
         .splice([1]);
 
-
-    var purchasesSortedInfo = {};
+    var purchasesSortedInfo = [];
 
     for (var i = 0; i < newPurchasesInfo.length; i++) {
         newPurchasesInfo[i] = newPurchasesInfo[i]
-              .split(';');
-//console.log(newPurchasesInfo[i]);
-        purchasesSortedInfo = {
+            .split(';');
 
-            date: newPurchasesInfo[i][1],
-            product: newPurchasesInfo[i][2],
-            price: newPurchasesInfo[i][5]
+        var dateData = newPurchasesInfo[i][1] + '-2016';
+        var dates = new Date(dateData);
+        var dd = dates.getDate();
+        var mm = dates.getMonth() + 1;
+        var yyyy = dates.getFullYear();
 
+        if (dd < 10) {
+            dd = '0' + dd
         }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        dates = mm + '/' + dd + '/' + yyyy;
+
+        purchasesSortedInfo.push({
+
+            shop: newPurchasesInfo[i][0],
+            date: dates,
+            product: newPurchasesInfo[i][2],
+            unitCost: parseInt(newPurchasesInfo[i][3]),
+            totalCost: parseInt(newPurchasesInfo[i][5]
+                .replace(/R/, '')
+                .replace(",", "."))
+
+        });
 
     }
 
-    console.log(purchasesSortedInfo);
+    //console.log(purchasesSortedInfo);
     return purchasesSortedInfo;
+}
+
+exports.weekPurchasesMap = function() {
+console.log(purchasesSortedInfo);
+              var weekPurchases = [];
+
+    purchasesSortedInfo.forEach(function(prop){
+console.log(prop);
+
+    })
+
+
+
+
 }

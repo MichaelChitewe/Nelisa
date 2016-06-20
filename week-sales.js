@@ -25,6 +25,6 @@ exports.weekSalesSorted = function(filePath) {
                 price: parseInt(items[3].replace(/R/, ""))
             }
         })
-        // console.log(weekSales);
+      // console.log(weekSales);
          return weekSales;
 }

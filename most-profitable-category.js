@@ -1,9 +1,6 @@
 var fs = require('fs');
 
-exports.mostProfitableCategory = function(){
+exports.mostProfitableCategory = function() {
 
 
-
-
-
-}
+};

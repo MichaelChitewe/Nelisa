@@ -16,35 +16,12 @@ var groupedSoldProductsWeek4 = products.groupedData(sortedProductsListWeek4);
 
 describe('list the products', function() {
 
-    it('return the product length week1', function() {
+    it('return the product length week', function() {
 
-        var productsList = products.linesInFiles('./input/week1.csv').length;
-
-        assert.equal(productsList, 105);
-
-    });
-
-    it('return the product length week2', function() {
-
-        var productsList = products.linesInFiles('./input/week2.csv').length;
-
-        assert.equal(productsList, 117);
-
-    });
-
-    it('return the product length week3', function() {
-
-        var productsList = products.linesInFiles('./input/week3.csv').length;
-
-        assert.equal(productsList, 104);
-
-    });
-
-    it('return the product length week4', function() {
-
-        var productsList = products.linesInFiles('./input/week4.csv').length;
-
-        assert.equal(productsList, 119);
+    assert.equal(105,products.linesInFiles('./input/week1.csv').length);
+    assert.equal(117,products.linesInFiles('./input/week2.csv').length);
+    assert.equal(104,products.linesInFiles('./input/week3.csv').length);
+    assert.equal(119,products.linesInFiles('./input/week4.csv').length);
 
     });
 
