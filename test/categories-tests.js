@@ -1,11 +1,10 @@
 var assert = require('assert');
 var categories = require('../categories');
 
-describe('list the categories', function() {
+describe('list the categories length week 1-4', function() {
 
-    it('return the categories length', function() {
+    it('return the categories length week 1-4', function() {
 
-        var listCategoriesMapped = categories.categoriesMapped('./input/categories.csv');
         var expectedMap = {
             "Apples - loose": "Fruits",
             "Bananas - loose": "Fruits",
@@ -27,14 +26,14 @@ describe('list the categories', function() {
             "Valentine Cards": "Gifts"
         };
 
-        assert.deepEqual(listCategoriesMapped, expectedMap);
+        assert.deepEqual(expectedMap,categories.categoriesMapped('./input/categories.csv'));
 
     });
 })
 
-describe('list the summed categories', function() {
+describe('list the summed categories week 1-4', function() {
 
-    it('return the summed categories week1', function() {
+    it('return the summed categories week 1-4', function() {
 
         var expectedMaps = {
             "Apples - loose": "Fruits",
@@ -75,7 +74,6 @@ describe('list the summed categories', function() {
             'Mixed Sweets 5s': 49
         };
 
-        var summedCategories = categories.categoriesSummed(salesProductsData, expectedMaps);
         var totalledCategories = {
             "Candy": 49,
             "Canned Foods": 40,
@@ -87,16 +85,15 @@ describe('list the summed categories', function() {
 
         };
 
-        assert.deepEqual(totalledCategories, summedCategories);
+        assert.deepEqual(totalledCategories, categories.categoriesSummed(salesProductsData, expectedMaps));
 
     })
 
 })
 
+describe('list the most popular category week 1-4', function() {
 
-describe('list the most popular category', function() {
-
-    it('return the most popular category week1', function() {
+    it('return the most popular category week 1-4', function() {
 
         var totalledCategories = {
             "Candy": 49,
@@ -108,7 +105,6 @@ describe('list the most popular category', function() {
             "Toiletries": 15
         };
 
-        var mostPopCat = categories.mostPopularCategory(totalledCategories);
 
         var expectedPopularCategory = {
             item: "Soft Drinks",
@@ -117,35 +113,34 @@ describe('list the most popular category', function() {
         };
 
 
-        assert.deepEqual(expectedPopularCategory, mostPopCat);
+        assert.deepEqual(expectedPopularCategory, categories.mostPopularCategory(totalledCategories));
 
     })
 
 })
 
 
-describe('list the least popular category', function() {
+describe('list the least popular category week 1-4', function() {
 
-    it('return the least popular category week1', function() {
+    it('return the least popular category week 1-4', function() {
 
-      var totalledCategories = {
-          "Candy": 49,
-          "Canned Foods": 40,
-          "Dairy": 69,
-          "Fruits": 83,
-          "Soft Drinks": 109,
-          "Starch": 84,
-          "Toiletries": 15
-      };
+        var totalledCategories = {
+            "Candy": 49,
+            "Canned Foods": 40,
+            "Dairy": 69,
+            "Fruits": 83,
+            "Soft Drinks": 109,
+            "Starch": 84,
+            "Toiletries": 15
+        };
 
-        var leastPopCat = categories.leastPopularCategory(totalledCategories);
         var expectedLeastPopularCategory = {
             item: "Toiletries",
             amount: 15
 
         };
 
-        assert.deepEqual( leastPopCat, expectedLeastPopularCategory);
+        assert.deepEqual(expectedLeastPopularCategory, categories.leastPopularCategory(totalledCategories));
 
     })
 

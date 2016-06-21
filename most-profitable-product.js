@@ -47,9 +47,12 @@ exports.purchasesData = function(filePath) {
     return purchasesSortedInfo;
 }
 
-exports.weekPurchasesMap = function() {
-console.log(purchasesSortedInfo);
-              var weekPurchases = [];
+exports.weekPurchasesMap = function(startDate, endDate) {
+
+    var weekPurchases = [];
+
+    var startDate = new Date(dates);
+    var endDate = startDate.getDate() + 6;
 
     purchasesSortedInfo.forEach(function(prop){
 console.log(prop);

@@ -14,11 +14,7 @@ exports.linesInFiles = function(filePath) {
             .splice(1)
             .splice(-3);
     }
-    //console.log(newSalesInfo);
-    return newSalesInfo;
-}
 
-exports.sortedProducts = function(newSalesInfo) {
 
     var salesList = newSalesInfo.map(function(items) {
 
@@ -28,22 +24,24 @@ exports.sortedProducts = function(newSalesInfo) {
                 quantity: parseInt(items[1])
             }
         })
-        // console.log(salesList.length);
+         //console.log(salesList);
          return salesList;
 }
 
 
-exports.groupedData = function(salesList) {
+exports.groupedData = function(sales) {
 
     var groupedProducts = {};
 
-    salesList.forEach(function(products) {
+    sales.forEach(function(products) {
 
         if (!groupedProducts.hasOwnProperty(products.product)) {
             groupedProducts[products.product] = 0;
         }
         groupedProducts[products.product] += products.quantity;
     });
+
+
     //console.log(groupedProducts);
     return groupedProducts;
 }
@@ -67,7 +65,7 @@ exports.mostPopularItem = function(groupedProducts) {
         }
 
     }
-    //  console.log(mostPopular);
+     //console.log(mostPopular);
     return mostPopular;
 }
 
@@ -93,6 +91,6 @@ exports.leastPopularItem = function(groupedProducts) {
 
     }
 
-    /// console.log(leastPopular);
+     //console.log(leastPopular);
     return leastPopular;
 }

@@ -1,26 +1,40 @@
 var assert = require('assert');
 var purchases = require('../most-profitable-product');
 
-describe('list of week1 purchases data length', function() {
-    it('return week1 purchases data length', function() {
+describe('list of purchases data length week 1-4', function() {
+    it('return purchases data length week 1-4', function() {
 
-        var listPurchasesSorted = purchases.purchasesData('./input/purchases.csv').length;
+    assert.equal(153,purchases.purchasesData('./input/purchases.csv').length);
 
-        assert.deepEqual(listPurchasesSorted, 153);
     })
 
 })
 
-describe('list of a week1 purchases data', function() {
+describe('list of a purchases data week 1-4', function() {
 
-    it('return week1 purchases data', function() {
-
-
+    it('return purchases data week 1-4', function() {
 
 
 
-        var expectedMap = purchases.weekPurchasesMap();
-assert.deepEqual(expectedMap);
+// assert.deepEqual(,purchases.weekPurchasesMap());
+// assert.deepEqual(,purchases.weekPurchasesMap());
+// assert.deepEqual(,purchases.weekPurchasesMap());
+// assert.deepEqual(,purchases.weekPurchasesMap());
+
+    })
+
+})
+
+describe('list of a purchases data week 1-4', function() {
+
+    it('return purchases data week 1-4', function() {
+
+
+
+// assert.deepEqual(,purchases.weekPurchasesMap());
+// assert.deepEqual(,purchases.weekPurchasesMap());
+// assert.deepEqual(,purchases.weekPurchasesMap());
+// assert.deepEqual(,purchases.weekPurchasesMap());
     })
 
 
