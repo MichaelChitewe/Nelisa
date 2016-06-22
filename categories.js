@@ -12,13 +12,13 @@ exports.categoriesMapped = function(filePath) {
     for (var i = 0; i < newCategoryInfo.length; i++) {
         newCategoryInfo[i] = newCategoryInfo[i]
             .split(',');
-        //  console.log(newCategoryInfo[i]);
+
 
         categoryMap[newCategoryInfo[i][0]] = newCategoryInfo[i][1];
 
     }
 
-    //console.log(categoryMap);
+
     return categoryMap;
 }
 
@@ -29,9 +29,9 @@ exports.categoriesSummed = function(productsData, categoryData) {
 
 
     for (var key in categoryData) {
-        //console.log(key);
+
         for (var prop in productsData) {
-          //console.log(prop);
+
             if (key === prop) {
 
                 if (!categoriesTotalled.hasOwnProperty(categoryData[key])) {
@@ -50,7 +50,8 @@ exports.categoriesSummed = function(productsData, categoryData) {
         }
 
     }
-return  categoriesTotalled;
+
+    return categoriesTotalled;
 }
 
 exports.mostPopularCategory = function(categoriesTotalled) {
@@ -71,29 +72,29 @@ exports.mostPopularCategory = function(categoriesTotalled) {
             }
         }
     }
-  //  console.log(mostPopularCata);
+
     return mostPopularCata;
 }
 
 exports.leastPopularCategory = function(categoriesTotalled) {
 
-        var min = 300;
-        var leastPopularCata = {};
+    var min = 300;
+    var leastPopularCata = {};
 
-        for (var prop in categoriesTotalled) {
-            if (categoriesTotalled[prop] < min) {
-                min = categoriesTotalled[prop];
+    for (var prop in categoriesTotalled) {
+        if (categoriesTotalled[prop] < min) {
+            min = categoriesTotalled[prop];
 
-                leastPopularCata = {
+            leastPopularCata = {
 
-                    amount: parseInt(min),
-                    item: prop
-
-                }
+                amount: parseInt(min),
+                item: prop
 
             }
-        }
 
-        //console.log(leastPopularCata);
-        return leastPopularCata;
+        }
+    }
+
+
+    return leastPopularCata;
 }

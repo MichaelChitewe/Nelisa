@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-exports.linesInFiles = function(filePath) {
+exports.groupedData = function(filePath) {
     var salesInfo = fs.readFileSync(filePath, 'utf-8');
 
     var newSalesInfo = salesInfo
@@ -15,21 +15,14 @@ exports.linesInFiles = function(filePath) {
             .splice(-3);
     }
 
+    var sales = newSalesInfo.map(function(items) {
 
-    var salesList = newSalesInfo.map(function(items) {
+        return {
 
-            return {
-
-                product: items[0],
-                quantity: parseInt(items[1])
-            }
-        })
-         //console.log(salesList);
-         return salesList;
-}
-
-
-exports.groupedData = function(sales) {
+            product: items[0],
+            quantity: parseInt(items[1])
+        }
+    })
 
     var groupedProducts = {};
 
@@ -42,7 +35,6 @@ exports.groupedData = function(sales) {
     });
 
 
-    //console.log(groupedProducts);
     return groupedProducts;
 }
 
@@ -65,7 +57,7 @@ exports.mostPopularItem = function(groupedProducts) {
         }
 
     }
-     //console.log(mostPopular);
+
     return mostPopular;
 }
 
@@ -91,6 +83,6 @@ exports.leastPopularItem = function(groupedProducts) {
 
     }
 
-     //console.log(leastPopular);
+
     return leastPopular;
 }

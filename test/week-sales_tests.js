@@ -1,113 +1,94 @@
 var assert = require('assert');
 var weekSales = require('../week-sales');
 
-describe('list the sales sorted data length week 1-4',function() {
 
-    it('return the sales sorted data length week 1-4', function() {
+describe('list the sales grouped data week 1-4', function() {
+    it('return the sales grouped data week 1-4', function() {
 
-    assert.equal(105,weekSales.weekSalesSorted('./input/week1.csv').length);
-    assert.equal(117,weekSales.weekSalesSorted('./input/week2.csv').length);
-    assert.equal(104,weekSales.weekSalesSorted('./input/week3.csv').length);
-    assert.equal(119,weekSales.weekSalesSorted('./input/week4.csv').length);
+        var groupedSalesWk1 = {
+            "Apples - loose": 72,
+            "Bananas - loose": 94,
+            "Bread": 540,
+            "Chakalaka Can": 230,
+            "Coke 500ml": 324,
+            "Cream Soda 500ml": 154,
+            "Fanta 500ml": 198,
+            "Gold Dish Vegetable Curry Can": 153,
+            "Imasi": 750,
+            "Iwisa Pap 5kg": 510,
+            "Milk 1l": 390,
+            "Mixed Sweets 5s": 120,
+            "Shampoo 1 litre": 90,
+            "Soap Bar": 72,
+            "Top Class Soy Mince": 264
+        };
 
+
+        var groupedSalesWk2 = {
+            "Apples - loose": 42,
+            "Bananas - loose": 56,
+            "Bread": 336,
+            "Chakalaka Can": 210,
+            "Coke 500ml": 252,
+            "Cream Soda 500ml": 154,
+            "Fanta 500ml": 138,
+            "Gold Dish Vegetable Curry Can": 243,
+            "Heart Chocolates": 700,
+            "Imasi": 900,
+            "Iwisa Pap 5kg": 300,
+            "Milk 1l": 280,
+            "Mixed Sweets 5s": 147,
+            "Rose (plastic)": 210,
+            "Shampoo 1 litre": 180,
+            "Soap Bar": 30,
+            "Top Class Soy Mince": 252,
+            "Valentine Cards": 56
+        };
+
+
+        var groupedSalesWk3 = {
+            "Apples - loose": 50,
+            "Bananas - loose": 34,
+            "Bread": 288,
+            "Chakalaka Can": 170,
+            "Coke 500ml": 108,
+            "Cream Soda 500ml": 84,
+            "Fanta 500ml": 84,
+            "Gold Dish Vegetable Curry Can": 72,
+            "Imasi": 625,
+            "Iwisa Pap 5kg": 120,
+            "Milk 1l": 280,
+            "Mixed Sweets 5s": 80,
+            "Shampoo 1 litre": 120,
+            "Soap Bar": 48,
+            "Top Class Soy Mince": 144
+
+        };
+
+        var groupedSalesWk4 = {
+            "Apples - loose": 64,
+            "Bananas - loose": 44,
+            "Bread": 396,
+            "Chakalaka Can": 330,
+            "Coke 500ml": 270,
+            "Cream Soda 500ml": 133,
+            "Fanta 500ml": 144,
+            "Gold Dish Vegetable Curry Can": 306,
+            "Imasi": 850,
+            "Iwisa Pap 5kg": 480,
+            "Milk 1l": 430,
+            "Mixed Sweets 5s": 108,
+            "Shampoo 1 litre": 390,
+            "Soap Bar": 150,
+            "Top Class Soy Mince": 516
+        };
+
+
+        assert.deepEqual(groupedSalesWk1, weekSales.weekSalesGrouped('./input/week1.csv'));
+        assert.deepEqual(groupedSalesWk2, weekSales.weekSalesGrouped('./input/week2.csv'));
+        assert.deepEqual(groupedSalesWk3, weekSales.weekSalesGrouped('./input/week3.csv'));
+        assert.deepEqual(groupedSalesWk4, weekSales.weekSalesGrouped('./input/week4.csv'));
 
     })
-
-    })
-
-describe('list the sales grouped data week 1-4', function(){
-  it('return the sales grouped data week 1-4', function(){
-
-    var datedSalesWk1 = weekSales.weekSalesSorted('./input/week1.csv');
-
-    var groupedSalesWk1 = {
-        'Milk 1l': 39,
-        'Imasi': 30,
-        'Bread': 45,
-        'Chakalaka Can': 23,
-        'Gold Dish Vegetable Curry Can': 17,
-        'Fanta 500ml': 33,
-        'Coke 500ml': 54,
-        'Cream Soda 500ml': 22,
-        'Iwisa Pap 5kg': 17,
-        'Top Class Soy Mince': 22,
-        'Shampoo 1 litre': 3,
-        'Soap Bar': 12,
-        'Bananas - loose': 47,
-        'Apples - loose': 36,
-        'Mixed Sweets 5s': 49
-    };
-
-    var datedSalesWk2 =  weekSales.weekSalesSorted('./input/week2.csv');
-
-    var groupedSalesWk2 = {
-        'Imasi': 36,
-        'Bread': 28,
-        'Chakalaka Can': 21,
-        'Gold Dish Vegetable Curry Can': 27,
-        'Fanta 500ml': 23,
-        'Coke 500ml': 42,
-        'Cream Soda 500ml': 22,
-        'Iwisa Pap 5kg': 10,
-        'Top Class Soy Mince': 21,
-        'Shampoo 1 litre': 6,
-        'Soap Bar': 5,
-        'Bananas - loose': 28,
-        'Apples - loose': 21,
-        'Mixed Sweets 5s': 54,
-        'Milk 1l': 28,
-        'Heart Chocolates': 20,
-        'Rose (plastic)': 14,
-        'Valentine Cards': 14
-    };
-
-    var datedSalesWk3 = weekSales.weekSalesSorted('./input/week3.csv');
-
-    var groupedSalesWk3 = {
-        'Imasi': 25,
-        'Bread': 24,
-        'Chakalaka Can': 17,
-        'Gold Dish Vegetable Curry Can': 8,
-        'Fanta 500ml': 14,
-        'Coke 500ml': 18,
-        'Cream Soda 500ml': 12,
-        'Iwisa Pap 5kg': 4,
-        'Top Class Soy Mince': 12,
-        'Shampoo 1 litre': 4,
-        'Soap Bar': 8,
-        'Bananas - loose': 17,
-        'Apples - loose': 25,
-        'Mixed Sweets 5s': 29,
-        'Milk 1l': 28
-    };
-
-    var datedSalesWk4 = weekSales.weekSalesSorted('./input/week4.csv');
-
-    var groupedSalesWk4 = {
-        'Imasi': 34,
-        'Bread': 33,
-        'Chakalaka Can': 33,
-        'Gold Dish Vegetable Curry Can': 34,
-        'Fanta 500ml': 24,
-        'Coke 500ml': 45,
-        'Cream Soda 500ml': 19,
-        'Iwisa Pap 5kg': 16,
-        'Top Class Soy Mince': 43,
-        'Shampoo 1 litre': 13,
-        'Soap Bar': 25,
-        'Bananas - loose': 22,
-        'Apples - loose': 32,
-        'Mixed Sweets 5s': 40,
-        'Milk 1l': 43
-
-    };
-
-
-    assert.deepEqual(groupedSalesWk1,weekSales.weekSalesGrouped(datedSalesWk1));
-    assert.deepEqual(groupedSalesWk2,weekSales.weekSalesGrouped(datedSalesWk2));
-    assert.deepEqual(groupedSalesWk3,weekSales.weekSalesGrouped(datedSalesWk3));
-    assert.deepEqual(groupedSalesWk4,weekSales.weekSalesGrouped(datedSalesWk4));
-
-  })
 
 })

@@ -1,7 +1,7 @@
 var fs = require('fs');
 
 
-exports.weekSalesSorted = function(filePath) {
+exports.weekSalesGrouped = function(filePath) {
     var weekInfo = fs.readFileSync(filePath, 'utf-8');
 
     var newWeekInfo = weekInfo
@@ -9,62 +9,48 @@ exports.weekSalesSorted = function(filePath) {
         .filter(Boolean)
         .splice([1]);
 
- var weekSales = [];
+    var weekSales = [];
 
     for (var i = 0; i < newWeekInfo.length; i++) {
         newWeekInfo[i] = newWeekInfo[i]
             .split(',')
             .splice(1);
-//console.log(newWeekInfo[i]);
 
+        var dateData = newWeekInfo[i][0] + '-2016';
+        var dates = new Date(dateData);
+        var dd = dates.getDate();
+        var mm = dates.getMonth() + 1;
+        var yyyy = dates.getFullYear();
 
-    var dateData = newWeekInfo[i][0] + '-2016';
-    var dates = new Date(dateData);
-    var dd = dates.getDate();
-    var mm = dates.getMonth() + 1;
-    var yyyy = dates.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
 
-    if (dd < 10) {
-        dd = '0' + dd
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        dates = mm + '/' + dd + '/' + yyyy;
+
+        weekSales.push({
+            date: dates,
+            product: newWeekInfo[i][1],
+            quantity: parseInt(newWeekInfo[i][2]),
+            price: parseInt(newWeekInfo[i][3].replace(/R/, ""))
+        })
+
     }
 
-    if (mm < 10) {
-        mm = '0' + mm
-    }
+    var groupedWeekSales = {};
 
-    dates = mm + '/' + dd + '/' + yyyy;
+    weekSales.forEach(function(products) {
 
-  //  console.log(newWeekInfo);
+        if (!groupedWeekSales.hasOwnProperty(products.product)) {
+            groupedWeekSales[products.product] = 0;
+        }
+        groupedWeekSales[products.product] += products.quantity * products.price;
+    });
 
-            weekSales.push({
-                date: dates,
-                product: newWeekInfo[i][1],
-                quantity: parseInt(newWeekInfo[i][2]),
-                price: parseInt(newWeekInfo[i][3].replace(/R/, ""))
-            })
-
-          }
-
-         console.log(weekSales);
-         return weekSales;
-}
-
-exports.weekSalesGrouped = function(weekSales){
-
-  var groupedSales = {};
-
-  weekSales.forEach(function(products) {
-
-      if (!groupedProducts.hasOwnProperty(products.product)) {
-          groupedProducts[products.product] = 0;
-      }
-      groupedProducts[products.product] += products.quantity;
-  });
-
-
-  //console.log(groupedProducts);
-  return groupedProducts;
-
-
+    return groupedWeekSales;
 
 }
