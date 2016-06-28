@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-exports.purchasesData = function(filePath) {
+exports.weekPurchasesData = function(filePath) {
     var purchasesInfo = fs.readFileSync(filePath, 'utf-8');
     var newPurchasesInfo = purchasesInfo
         .split('\n')
@@ -13,28 +13,15 @@ exports.purchasesData = function(filePath) {
         newPurchasesInfo[i] = newPurchasesInfo[i]
             .split(';');
 
-        var dateData = newPurchasesInfo[i][1] + '-2016';
-        var dates = new Date(dateData);
-        var dd = dates.getDate();
-        var mm = dates.getMonth() + 1;
-        var yyyy = dates.getFullYear();
-
-        if (dd < 10) {
-            dd = '0' + dd
-        }
-
-        if (mm < 10) {
-            mm = '0' + mm
-        }
-
-        dates = mm + '/' + dd + '/' + yyyy;
-
         purchasesSortedInfo.push({
 
             shop: newPurchasesInfo[i][0],
-            date: dates,
+            date: newPurchasesInfo[i][1] + '-2016',
             product: newPurchasesInfo[i][2],
-            unitCost: parseInt(newPurchasesInfo[i][3]),
+            quantity: parseInt(newPurchasesInfo[i][3]),
+            unitCost: parseInt(newPurchasesInfo[i][4]
+                .replace(/R/, '')
+                .replace(",", ".")),
             totalCost: parseInt(newPurchasesInfo[i][5]
                 .replace(/R/, '')
                 .replace(",", "."))
@@ -43,22 +30,36 @@ exports.purchasesData = function(filePath) {
 
     }
 
-    //console.log(purchasesSortedInfo);
-    return purchasesSortedInfo;
-}
+    var salesWeek1Costs = [];
+    var salesWeek2Costs = [];
+    var salesWeek3Costs = [];
+    var salesWeek4Costs = [];
 
-exports.weekPurchasesMap = function(startDate, endDate) {
+    for (var i = 0; i < purchasesSortedInfo.length; i++) {
 
-    var weekPurchases = [];
+        var startDate = new Date(purchasesSortedInfo[i].date);
 
-    var startDate = new Date(dates);
-    var endDate = startDate.getDate() + 6;
+        if (startDate.getMonth() === 0) {
 
-    purchasesSortedInfo.forEach(function(prop){
-console.log(prop);
+            salesWeek1Costs.push(purchasesSortedInfo[i]);
+        }
 
-    })
+        if (startDate.getDate() < 7 && startDate.getMonth() === 1) {
 
+            salesWeek2Costs.push(purchasesSortedInfo[i]);
+        }
+
+        if (startDate.getDate() > 8 && startDate.getDate() < 15) {
+            salesWeek3Costs.push(purchasesSortedInfo[i]);
+        }
+
+        if (startDate.getDate() > 15 && startDate.getDate() < 21) {
+            salesWeek4Costs.push(purchasesSortedInfo[i]);
+        }
+    }
+
+    console.log(salesWeek4Costs);
+    return salesWeek4Costs;
 
 
 
