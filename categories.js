@@ -13,7 +13,6 @@ exports.categoriesMapped = function(filePath) {
         newCategoryInfo[i] = newCategoryInfo[i]
             .split(',');
 
-
         categoryMap[newCategoryInfo[i][0]] = newCategoryInfo[i][1];
 
     }

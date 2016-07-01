@@ -1,6 +1,5 @@
 var fs = require('fs');
 
-
 exports.weekSalesGrouped = function(filePath) {
     var weekInfo = fs.readFileSync(filePath, 'utf-8');
 
@@ -16,24 +15,8 @@ exports.weekSalesGrouped = function(filePath) {
             .split(',')
             .splice(1);
 
-        var dateData = newWeekInfo[i][0] + '-2016';
-        var dates = new Date(dateData);
-        var dd = dates.getDate();
-        var mm = dates.getMonth() + 1;
-        var yyyy = dates.getFullYear();
-
-        if (dd < 10) {
-            dd = '0' + dd
-        }
-
-        if (mm < 10) {
-            mm = '0' + mm
-        }
-
-        dates = mm + '/' + dd + '/' + yyyy;
-
         weekSales.push({
-            date: dates,
+            date: newWeekInfo[i][0] + '-2016',
             product: newWeekInfo[i][1],
             quantity: parseInt(newWeekInfo[i][2]),
             price: parseInt(newWeekInfo[i][3].replace(/R/, ""))

@@ -13,8 +13,8 @@ exports.groupedData = function(filePath) {
             .split(',')
             .splice(1)
             .splice(-3);
-    }
 
+}
     var sales = newSalesInfo.map(function(items) {
 
         return {

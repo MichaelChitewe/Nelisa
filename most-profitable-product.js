@@ -27,40 +27,85 @@ exports.weekPurchasesData = function(filePath) {
                 .replace(",", "."))
 
         });
+    }
+
+    return purchasesSortedInfo;
+}
+
+exports.weekPurchasesInfo = function(purchasesSorted, startDate, endDate) {
+
+    var weekCosts = [];
+
+    var startDt = new Date(startDate);
+    var endDt = new Date(endDate);
+
+
+    for (var i = 0; i < purchasesSorted.length; i++) {
+
+        var day = new Date(purchasesSorted[i].date);
+
+        if (day >= startDt && day <= endDt) {
+            weekCosts.push(purchasesSorted[i]);
+        }
 
     }
 
-    var salesWeek1Costs = [];
-    var salesWeek2Costs = [];
-    var salesWeek3Costs = [];
-    var salesWeek4Costs = [];
+    return weekCosts;
+}
 
-    for (var i = 0; i < purchasesSortedInfo.length; i++) {
 
-        var startDate = new Date(purchasesSortedInfo[i].date);
+exports.mappedPurchases = function(weekCosts) {
 
-        if (startDate.getMonth() === 0) {
+    var purchasesMapped = {};
 
-            salesWeek1Costs.push(purchasesSortedInfo[i]);
+    weekCosts.forEach(function(products) {
+
+        if (!purchasesMapped.hasOwnProperty(products.product)) {
+            purchasesMapped[products.product] = 0;
         }
+        purchasesMapped[products.product] += products.totalCost;
+    });
 
-        if (startDate.getDate() < 7 && startDate.getMonth() === 1) {
+    return purchasesMapped;
 
-            salesWeek2Costs.push(purchasesSortedInfo[i]);
-        }
+}
 
-        if (startDate.getDate() > 8 && startDate.getDate() < 15) {
-            salesWeek3Costs.push(purchasesSortedInfo[i]);
-        }
+exports.salesPurchasesCalculation = function(costs, sales) {
 
-        if (startDate.getDate() > 15 && startDate.getDate() < 21) {
-            salesWeek4Costs.push(purchasesSortedInfo[i]);
+    var productsCalculation = {};
+
+    for (var key in costs) {
+
+        for (var prop in sales) {
+
+            if (key === prop) {
+
+                productsCalculation[key] = (sales[prop] - costs[key]);
+
+            }
         }
     }
 
-    console.log(salesWeek4Costs);
-    return salesWeek4Costs;
+    return productsCalculation;
+}
 
+exports.mostProfitableProduct = function(productsMap){
 
+    var maxProfit = -100;
+    var mostProfitable = {};
 
+    for (var prop in productsMap) {
+
+        if (productsMap[prop] > maxProfit) {
+            maxProfit = productsMap[prop];
+
+            mostProfitable = {
+
+                product: prop,
+                amount: parseInt(maxProfit)
+            }
+        }
+    }
+
+    return mostProfitable;
 }
