@@ -17,15 +17,12 @@ exports.categoriesMapped = function(filePath) {
 
     }
 
-
     return categoryMap;
 }
 
 exports.categoriesSummed = function(productsData, categoryData) {
 
-
     var categoriesTotalled = {};
-
 
     for (var key in categoryData) {
 
