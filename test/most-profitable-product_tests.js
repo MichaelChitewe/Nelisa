@@ -3,9 +3,9 @@ var purchases = require('../most-profitable-product');
 
 
 
-describe('list of purchases data week 1-4', function() {
+describe('list of purchases data for the week', function() {
 
-    it('return purchases data week 1-4', function() {
+    it('return purchases data for the week ', function() {
 
         assert.equal(153, purchases.weekPurchasesData('./input/purchases.csv').length);
 
@@ -15,9 +15,9 @@ describe('list of purchases data week 1-4', function() {
 
 
 
-describe('list of purchases data week 1-4', function() {
+describe('list of purchases data for the week', function() {
 
-    it('return purchases data week 1-4', function() {
+    it('return purchases data for the week', function() {
 
         var initialDate = '23-Jan-2016';
         var lastDate = '28-Jan-2016';

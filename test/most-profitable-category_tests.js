@@ -1,8 +1,8 @@
 var assert = require('assert');
 var categories = require('../most-profitable-category');
 
-describe('list the most profitable category week', function() {
-    it('return the most profitable category week', function() {
+describe('list the map  of products category for the week', function() {
+    it('return the map of products category for the week', function() {
 
         var categoriesMap = {
             "Apples - loose": "Fruits",
