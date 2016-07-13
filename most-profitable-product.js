@@ -30,7 +30,7 @@ exports.weekPurchasesData = function(filePath) {
     }
 
     return purchasesSortedInfo;
-}
+};
 
 exports.weekPurchasesInfo = function(purchasesSorted, startDate, endDate) {
 
@@ -43,7 +43,7 @@ exports.weekPurchasesInfo = function(purchasesSorted, startDate, endDate) {
     for (var i = 0; i < purchasesSorted.length; i++) {
 
         var day = new Date(purchasesSorted[i].date);
-
+console.log(day);
         if (day >= startDt && day <= endDt) {
             weekCosts.push(purchasesSorted[i]);
         }
@@ -51,7 +51,7 @@ exports.weekPurchasesInfo = function(purchasesSorted, startDate, endDate) {
     }
 
     return weekCosts;
-}
+};
 
 
 exports.mappedPurchases = function(weekCosts) {
@@ -68,7 +68,7 @@ exports.mappedPurchases = function(weekCosts) {
 
     return purchasesMapped;
 
-}
+};
 
 exports.salesPurchasesCalculation = function(costs, sales) {
 
@@ -87,7 +87,7 @@ exports.salesPurchasesCalculation = function(costs, sales) {
     }
 
     return productsCalculation;
-}
+};
 
 exports.mostProfitableProduct = function(productsMap){
 
@@ -100,12 +100,12 @@ exports.mostProfitableProduct = function(productsMap){
             maxProfit = productsMap[prop];
 
             mostProfitable = {
-
-                product: prop,
+                description: 'most profitable product',
+                item: prop,
                 amount: parseInt(maxProfit)
-            }
+            };
         }
     }
 
     return mostProfitable;
-}
+};

@@ -5,14 +5,13 @@ var purchases = require('../most-profitable-product');
 
 describe('list of purchases data for the week', function() {
 
-    it('return purchases data for the week ', function() {
+    it('return purchases data for the week', function() {
 
         assert.equal(153, purchases.weekPurchasesData('./input/purchases.csv').length);
 
-    })
+    });
 
-})
-
+});
 
 
 describe('list of purchases data for the week', function() {
@@ -1267,9 +1266,9 @@ describe('list of purchases data for the week', function() {
         }];
 
         assert.deepEqual(purchasesOutPut, purchases.weekPurchasesInfo(purchasesData, initialDate, lastDate));
-    })
+    });
 
-})
+});
 
 
 describe('listed costs mapped', function() {
@@ -1462,13 +1461,13 @@ describe('listed costs mapped', function() {
             'Coke 500ml': 136,
             'Apples - loose': 15,
             'Bananas - loose': 4
-        }
+        };
 
         assert.deepEqual(costsMap, purchases.mappedPurchases(costs));
     });
 
 
-})
+});
 
 describe('list cost and sales calculated ', function() {
     it('return cost and sales calculated', function() {
@@ -1508,7 +1507,7 @@ describe('list cost and sales calculated ', function() {
           'Coke 500ml': 136,
           'Apples - loose': 15,
           'Bananas - loose': 4
-      }
+      };
 
 
       var outPut = {
@@ -1528,13 +1527,13 @@ describe('list cost and sales calculated ', function() {
         "Soap Bar": 63,
         "Top Class Soy Mince": 144
 
-      }
+      };
 
 
         assert.deepEqual(outPut, purchases.salesPurchasesCalculation(costsMapped, salesMapped));
     });
 
-})
+});
 
 describe('list most profitable product ', function() {
     it('return most profitable product', function() {
@@ -1559,8 +1558,9 @@ describe('list most profitable product ', function() {
       };
 
       var mostProfitProduct = {
+        description: 'most profitable product',
         amount: 478,
-        product: "Imasi"
+        item: "Imasi"
       };
 
 

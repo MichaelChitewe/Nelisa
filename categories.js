@@ -18,7 +18,7 @@ exports.categoriesMapped = function(filePath) {
     }
 
     return categoryMap;
-}
+};
 
 exports.categoriesSummed = function(productsData, categoryData) {
 
@@ -48,7 +48,7 @@ exports.categoriesSummed = function(productsData, categoryData) {
     }
 
     return categoriesTotalled;
-}
+};
 
 exports.mostPopularCategory = function(categoriesTotalled) {
 
@@ -62,15 +62,16 @@ exports.mostPopularCategory = function(categoriesTotalled) {
 
             mostPopularCata = {
 
+                description: 'most popular category',
                 amount: parseInt(max),
                 item: prop
 
-            }
+            };
         }
     }
 
     return mostPopularCata;
-}
+};
 
 exports.leastPopularCategory = function(categoriesTotalled) {
 
@@ -82,15 +83,65 @@ exports.leastPopularCategory = function(categoriesTotalled) {
             min = categoriesTotalled[prop];
 
             leastPopularCata = {
-
+                description: 'least popular category',
                 amount: parseInt(min),
                 item: prop
 
-            }
+            };
 
         }
     }
 
 
     return leastPopularCata;
-}
+};
+
+
+exports.totalCostsCategories = function(costsData, categoryData) {
+
+    var categoriesTotalled = {};
+
+    for (var key in categoryData) {
+
+        for (var prop in costsData) {
+
+            if (key === prop) {
+
+                if (!categoriesTotalled.hasOwnProperty(categoryData[key])) {
+
+                    categoriesTotalled[categoryData[key]] = 0;
+
+                }
+
+                    categoriesTotalled[categoryData[key]] += costsData[prop];
+
+                }
+
+            }
+
+        }
+
+    return categoriesTotalled;
+};
+
+exports.mostProfitableCategory = function(categoriesTotal) {
+
+    var max = 0;
+    var mostProfCat = {};
+
+    for (var prop in categoriesTotal) {
+
+        if (categoriesTotal[prop] > max) {
+            max = categoriesTotal[prop];
+
+            mostProfCat = {
+                description: 'most profitable category',
+                item: prop,
+                amount: parseInt(max)
+
+            };
+        }
+    }
+
+    return mostProfCat;
+};
